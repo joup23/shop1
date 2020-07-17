@@ -37,7 +37,7 @@
 	
 
 	
-   
+   <!-- row -->
       <select id="selectGoodsList" parameterType="String" resultMap="goodsResult"   >
         <![CDATA[
          select t.*
