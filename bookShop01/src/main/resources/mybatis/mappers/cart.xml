@@ -57,10 +57,9 @@
 	<!-- 완 -->
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
 	    <![CDATA[
-		    select decode(count(*), 0, 'false', 'true') from t_shopping_cart
+	    select if(COUNT(*)=0, 'false', 'true') from t_shopping_cart
 			where goods_id=#{goods_id}
-			  and member_id=#{member_id} 
-
+			  and member_id=#{member_id} ; 
     	]]>
 	</select>
 
@@ -93,7 +92,7 @@
 	<!-- 완 -->
 	<select id="selectMaxCartId" resultType="int">
 	    <![CDATA[
-			select nvl(max(cart_id), 0) + 1 from t_shopping_cart 
+			select ifnull(max(cart_id), 0) + 1 from t_shopping_cart 
     	]]>
 	</select>
 

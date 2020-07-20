@@ -45,9 +45,9 @@
 	</select>
 	
 	<select id="selectOverlappedID" parameterType="String" resultType="String">
-	   select decode(count(*),1, 'true', 0, 'false')
+	   select if(COUNT(*)>=1, 'true', 'false')
 	   from t_shopping_member
-	   where member_id = #{id}
+	   where member_id =#{id}
 	</select>
 	
   <insert id="insertNewMember"  parameterType="memberVO"><!-- 문제없음 -->

@@ -71,10 +71,10 @@
 	<!-- 완  -->
 <select id="selectNewOrderList" resultMap="orderResult"   parameterType="java.util.HashMap"  >
 		  select * from (
-			    select rowNum as recNum,t.*
+			    select @rownum:=@rownum+1 as recNum,t.*
 			       from (
 			              select  *  from t_shopping_order 
-			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+			              where date_format(pay_order_time,'%Y-%m-%d')  BETWEEN #{beginDate} and #{endDate}
 			                <if test="search_type=='orderer_id'">
 			                  AND orderer_id=#{search_word}
 			                </if>
@@ -84,9 +84,9 @@
 			                <if test="search_type=='orderer_hp_num'">
 			                   AND pay_orderer_hp_num=#{search_word} 
 			                </if>
-			              order by pay_order_time desc
-					    ) t
-				)							
+			               order by pay_order_time desc
+					    ) t, (SELECT @rownum:=0) tmp
+				) a						
 			where				
 		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
 	</select>
