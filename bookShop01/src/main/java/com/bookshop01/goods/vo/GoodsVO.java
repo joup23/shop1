@@ -1,7 +1,6 @@
 package com.bookshop01.goods.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class GoodsVO {
 	private int goods_id;

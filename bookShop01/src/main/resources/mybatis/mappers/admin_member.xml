@@ -34,6 +34,8 @@
 		<result property="joinDate" column="joinDate" />
 		<result property="del_yn" column="del_yn" />
 	</resultMap>
+	
+	<!-- 미구현 -->
 <select id="listMember" resultMap="memberResult"   parameterType="java.util.HashMap"  >
 		  select * from (
 			    select rowNum as recNum,t.*

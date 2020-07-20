@@ -69,6 +69,8 @@
 		
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap>
+	
+	<!--  수정 필요 -->
 	<insert id="insertNewGoods" parameterType="java.util.Map"   >
 		<selectKey resultType="String" keyProperty="goods_id" order="BEFORE">
 	    	select seq_goods_id.nextval from dual
@@ -121,6 +123,7 @@
 					 			 )
 		]]>
 	</insert> 
+	<!-- 수정 필요 -->
 		<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
 		<selectKey resultType="int" keyProperty="image_id" order="BEFORE">
 	    	select seq_image_id.nextval from dual
@@ -138,6 +141,7 @@
 											   								 #{reg_id} )
 		]]>
 	</insert> 
+	<!-- 완, 수정 필요할수도있음 -->
 	<select id="selectNewGoodsList" resultMap="goodsResult"   parameterType="java.util.Map"  >
 	    <![CDATA[
 		  select * from (
@@ -167,6 +171,7 @@
     	]]>
 	</select>
 	
+	<!-- 완 -->
 	<select id="selectOrderGoodsList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
 		  select * from (
 			    select rowNum as recNum,t.*
@@ -191,7 +196,7 @@
 	
  
 
-	
+	<!-- 완 -->
 	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
 	    <![CDATA[
 		     select g.*,to_char(g.goods_published_date,'YYYY-MM-DD') as goods_published_date, d.fileName from t_shopping_goods g, t_goods_detail_image d
@@ -201,6 +206,7 @@
 	        order by g.goods_id
     	]]>
 	</select>
+	
 	<select id="selectGoodsImageFileList" resultMap="imageResult"   parameterType="String"  >
 	    <![CDATA[
 		    	select * from  t_goods_detail_image 

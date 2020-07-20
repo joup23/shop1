@@ -40,7 +40,7 @@
 		<result property="orderer_hp" column="orderer_hp" />
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap>
-	
+	<!-- 완 -->
 	 <select id="selectMyOrderList" resultMap="orderGoodsResult"  parameterType="orderVO"  >
 	    <![CDATA[
 			select * from t_shopping_order
@@ -49,6 +49,7 @@
         	order by pay_order_time desc
 		]]>
 	</select>
+	<!-- 바꿔야함 -->
 	<insert id="insertNewOrder" parameterType="orderVO"  >
 	    <selectKey resultType="int" keyProperty="order_seq_num" order="BEFORE">
 	    	select order_seq_num.nextval from dual
@@ -106,13 +107,13 @@
 						                #{pay_orderer_hp_num})
     	]]>
 	</insert>
-
+	<!-- 수정해야함 -->
    <select id="selectOrderID" resultType="int"  >
 	    <![CDATA[
 		    select seq_order_id.nextval from dual
     	]]>
 	</select>
-	
+	<!-- 완 -->
 	<select id="selectMyOrder" resultMap="orderGoodsResult"   parameterType="String"  >
 	    <![CDATA[
 		    select * from t_shopping_order
