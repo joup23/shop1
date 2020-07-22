@@ -1,5 +1,6 @@
 package com.bookshop01.member.controller;
 
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +32,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	private MemberService memberService;
 	@Autowired
 	private MemberVO memberVO;
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
@@ -37,8 +41,10 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 memberVO=memberService.login(loginMap);
+		 String passwd = loginMap.get("member_pw");
+		 boolean passMath = passEncoder.matches(passwd, memberVO.getMember_pw());
 		 
-		if(memberVO!= null && memberVO.getMember_id()!=null){
+		if(memberVO!= null && passMath){
 			HttpSession session=request.getSession();
 			session=request.getSession();
 			session.setAttribute("isLogOn", true);
@@ -83,6 +89,9 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			String inputPass = _memberVO.getMember_pw();
+			String pass=passEncoder.encode(inputPass);
+			_memberVO.setMember_pw(pass);
 		    memberService.addMember(_memberVO);
 		    message  = "<script>";
 		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
