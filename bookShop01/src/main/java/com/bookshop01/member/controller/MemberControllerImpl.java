@@ -1,5 +1,6 @@
 package com.bookshop01.member.controller;
 
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +12,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
@@ -36,6 +37,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 memberVO=memberService.login(loginMap);
+		 
 		if(memberVO!= null && memberVO.getMember_id()!=null){
 			HttpSession session=request.getSession();
 			session=request.getSession();
@@ -52,7 +54,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			
 			
 		}else{
-			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
+			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요!!!";
 			mav.addObject("message", message);
 			mav.setViewName("/member/loginForm");
 		}

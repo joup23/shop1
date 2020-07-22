@@ -17,17 +17,24 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-		<constructor-arg ref="hikariConfig"/>
-	</bean>
 	
+	<bean id="dataSourceSpied" class="com.zaxxer.hikari.HikariDataSource">	<!-- log -->
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">	<!-- log -->
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="[   SQL   ]  :  " />
+			</bean>
+		</property>
+	</bean>
+
 	<!-- 기본 데이터소스 -->
-	<!-- <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
-		<property name="driver" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean> -->
+	<!-- <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource"> <property name="driver" value="${jdbc.driverClassName}" /> <property name="url" value="${jdbc.url}" /> <property 
+		name="username" value="${jdbc.username}" /> <property name="password" value="${jdbc.password}" /> </bean> -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis/models/modelConfig.xml" />

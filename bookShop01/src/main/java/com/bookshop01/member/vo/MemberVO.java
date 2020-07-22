@@ -1,9 +1,15 @@
 package com.bookshop01.member.vo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component("memberVO")
-public class MemberVO {
+public class MemberVO /* implements UserDetails */{
 	private String member_id;
 	private String member_pw;
 	private String member_name;
@@ -28,6 +34,7 @@ public class MemberVO {
 	private String namujiAddress;
 	private String joinDate;
 	private String del_yn;
+	private String authority;
 	
 	public String getMember_id() {
 		return member_id;
@@ -183,6 +190,12 @@ public class MemberVO {
 	public void setDel_yn(String del_yn) {
 		this.del_yn = del_yn;
 	}
-	
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
 }
 

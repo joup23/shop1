@@ -15,21 +15,27 @@ import com.bookshop01.member.vo.MemberVO;
 
 @Service("memberService")
 @Transactional(propagation=Propagation.REQUIRED)
-public class MemberServiceImpl implements MemberService,UserDetailsService {
+public class MemberServiceImpl implements MemberService/* , UserDetailsService */ {
 	@Autowired
 	private MemberDAO memberDAO;
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	/*
+	 * @Override public UserDetails loadUserByUsername(String username) throws
+	 * UsernameNotFoundException { MemberVO user = memberDAO.getUserById(username);
+	 * if(user==null) { throw new UsernameNotFoundException(username); } return
+	 * user; }
+	 */
 
 	@Override
 	public MemberVO login(Map  loginMap) throws Exception{
 		return memberDAO.login(loginMap);
 	}
 	
+	@Override
+	public String getUsername(String member_id) throws Exception {
+		return memberDAO.selectUsername(member_id);
+	}
+
 	@Override
 	public void addMember(MemberVO memberVO) throws Exception{
 		memberDAO.insertNewMember(memberVO);
