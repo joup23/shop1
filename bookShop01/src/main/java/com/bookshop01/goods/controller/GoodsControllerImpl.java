@@ -49,7 +49,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		//System.out.println(keyword);
 		if(keyword == null || keyword.equals(""))
 		   return null ;
-	
+		System.out.println(keyword);
 		keyword = keyword.toUpperCase();
 	    List<String> keywordList =goodsService.keywordSearch(keyword);
 	    
@@ -58,7 +58,7 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		jsonObject.put("keyword", keywordList);
 		 		
 	    String jsonInfo = jsonObject.toString();
-	   // System.out.println(jsonInfo);
+	   	//System.out.println(jsonInfo);
 	    return jsonInfo ;
 	}
 	
