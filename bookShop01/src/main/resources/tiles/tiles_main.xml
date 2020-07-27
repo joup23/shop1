@@ -16,15 +16,28 @@
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
+	
+	<definition name="baseLayout2" template="/WEB-INF/views/common/layout2.jsp">
+		<put-attribute name="title" value="레이아웃 페이지" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header2.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer2.jsp" />
+	</definition>
+	
+	
+	<definition name="/test/main" extends="baseLayout2">
+		<put-attribute name="title" value="쇼핑몰 메인페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main2.jsp" />
+	</definition>
 
 
-	<definition name="empty" template="/WEB-INF/views/test/empty.jsp">
+	<!-- <definition name="empty" template="/WEB-INF/views/test/empty.jsp">
 		<put-attribute name="content" value="" />
 	</definition>
 	<definition name="/test/*" extends="empty">
 		<put-attribute name="content" value="/WEB-INF/views/test/{1}.jsp"></put-attribute>
 	</definition>
-
+ -->
 
 </tiles-definitions>
 

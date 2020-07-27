@@ -129,15 +129,55 @@
 
 .item {
 	height: 384.33px;
+	background-color: #FFFFFF;
 }
 
 #suggest {
 	display: none;
 	position: absolute;
-	left: 830px;
-	top: 80px;
-	border: 0.1px solid #87cb42;
+	border-top: 2px solid #7971ea;
+	border-left: 1px solid #edf0f5;
+	border-right: 1px solid #edf0f5;
+	border-bottom: 1px solid #edf0f5;
 	z-index: 3;
-	font-weight: bold;
-	background-color: #ffffff;
+	top: 100%;
+	-webkit-box-shadow: 0 0px 4px 0px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0px 4px 0px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    padding: 9px 9px;
 }
+
+ .suggestList  {
+	background: #FFF;
+	color: #25262a;
+	padding: 9px 9px;
+}
+
+.containerLogin {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto
+}
+
+
+@media ( min-width :576px) {
+	.containerLogin {
+		max-width: 540px
+	}
+}
+
+@media ( min-width :768px) {
+	.containerLogin {
+		max-width: 720px
+	}
+}
+
+
+.col-md-72 {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}

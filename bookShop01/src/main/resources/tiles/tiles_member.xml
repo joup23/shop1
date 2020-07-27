@@ -8,6 +8,10 @@
          <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
       </definition>  
       
+      <definition name="/member/loginForm2" extends="baseLayout2">
+         <put-attribute name="title" value="로그인 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/member/loginForm2.jsp" />
+      </definition>  
       
       <definition name="/member/memberForm" extends="baseLayout">
          <put-attribute name="title" value="회원 가입 페이지" />

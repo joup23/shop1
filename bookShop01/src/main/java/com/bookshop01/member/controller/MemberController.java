@@ -16,7 +16,10 @@ import com.bookshop01.member.vo.MemberVO;
 public interface MemberController {
 	public ModelAndView login(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
-
+	//test
+	public ModelAndView login2(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+	
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ResponseEntity addMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,

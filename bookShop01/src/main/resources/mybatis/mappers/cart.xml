@@ -95,5 +95,11 @@
 			select ifnull(max(cart_id), 0) + 1 from t_shopping_cart 
     	]]>
 	</select>
-
+	
+	<select id="countCart" resultType="int" parameterType="cartVO">
+		<![CDATA[
+			select COUNT(*)as count from t_shopping_cart 
+			where member_id=#{member_id}
+		]]>
+	</select>
 </mapper>

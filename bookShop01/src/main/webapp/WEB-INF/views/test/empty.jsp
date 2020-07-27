@@ -148,6 +148,10 @@
 </script>
 </head>
 <body>
+<script>
+	var str="${cartCount}";
+	console.log(str);
+</script>
 	<div class="site-wrap">
 		<header class="site-navbar" role="banner">
 			<div class="site-navbar-top">
@@ -163,10 +167,11 @@
 									name="searchWord" onKeyUp="keywordSearch()"
 									class="form-control border-0" placeholder="Search">
 							</form>
+							<div id="suggest" class="suggest1">
+								<div id="suggestList" class="suggestList"></div>
+							</div>
 						</div>
-						<div id="suggest" class="suggest">
-							<div id="suggestList"></div>
-						</div>
+
 
 						<div
 							class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -186,9 +191,9 @@
 												title="마이페이지"><span class="icon icon-user"></span></a></li>
 											<li><a href="${contextPath}/cart/myCartList.do"
 												class="site-cart"> <span class="icon icon-shopping_cart"
-													title="장바구니"></span> <span class="count">2</span>
+													title="장바구니"></span> <span class="count">${cartCount}</span>
 											</a></li>
-											<li><a href="#" title="마이페이지"><span
+											<li><a href="#" title="주문배송"><span
 													class="icon icon-local_shipping"></span></a></li>
 										</c:when>
 										<c:otherwise>
@@ -196,10 +201,6 @@
 												title="로그인"><span class="icon icon-user"></span></a></li>
 											<li><a href="${contextPath}/member/memberForm.do"
 												title="회원가입"><span class="icon icon-person_add"></span></a></li>
-											<li><a href="${contextPath}/cart/myCartList.do"
-												class="site-cart"> <span class="icon icon-shopping_cart"
-													title="장바구니"></span> <span class="count">2</span>
-											</a></li>
 										</c:otherwise>
 									</c:choose>
 
@@ -451,8 +452,8 @@
 							<label for="email_subscribe" class="footer-heading">Subscribe</label>
 							<div class="form-group">
 								<input type="text" class="form-control py-4"
-									id="email_subscribe" placeholder="Email"> <br/><input
-									type="submit" class="btn btn-sm btn-primary" value="Send">
+									id="email_subscribe" placeholder="Email"> <br />
+								<input type="submit" class="btn btn-sm btn-primary" value="Send">
 							</div>
 						</form>
 					</div>
