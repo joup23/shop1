@@ -68,7 +68,7 @@ a {
     font-size: 14px !important;
     padding: 10px 20px !important; }
   .btn.btn-primary {
-    font-size: 17px;
+    /* font-size: 17px; */
     font-weight: 300;
     letter-spacing: .2em; }
   .btn:hover {

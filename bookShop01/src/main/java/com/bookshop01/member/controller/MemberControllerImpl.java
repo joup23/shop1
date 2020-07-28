@@ -117,39 +117,12 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			HttpServletResponse response) throws Exception {
 		ResponseEntity resEntity = null;
 		String result = memberService.overlapped(id);
+		System.out.println(id);
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
 
 	
 	//test
-	@Override
-	@RequestMapping(value = "/login2.do", method = RequestMethod.POST)
-	public ModelAndView login2(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		memberVO = memberService.login(loginMap);
-		String passwd = loginMap.get("member_pw");
-		boolean passMath = passEncoder.matches(passwd, memberVO.getMember_pw());
-
-		if (memberVO != null && passMath) {
-			HttpSession session = request.getSession();
-			session = request.getSession();
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo", memberVO);
-
-			String action = (String) session.getAttribute("action");
-			if (action != null && action.equals("/order/orderEachGoods.do")) {
-				mav.setViewName("forward:" + action);
-			} else {
-				mav.setViewName("redirect:/main/main.do");
-			}
-
-		} else {
-			String message = "아이디나  비밀번호가 틀립니다. 다시 로그인해주세요!!!";
-			mav.addObject("message", message);
-			mav.setViewName("/member/loginForm");
-		}
-		return mav;
-	}
+	
 }
