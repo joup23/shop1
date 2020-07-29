@@ -1,6 +1,7 @@
 package com.bookshop01.goods.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bookshop01.cart.service.CartService;
+import com.bookshop01.cart.vo.CartVO;
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.member.vo.MemberVO;
 
 import net.sf.json.JSONObject;
 
@@ -27,6 +31,11 @@ import net.sf.json.JSONObject;
 public class GoodsControllerImpl extends BaseController   implements GoodsController {
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private CartVO cartVO;
 	
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
 	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id,
@@ -100,4 +109,22 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		session.setAttribute("quickGoodsList",quickGoodsList);
 		session.setAttribute("quickGoodsListNum", quickGoodsList.size());
 	}
+	
+	@RequestMapping(value="/searchGoodsTest.do" ,method = RequestMethod.GET)
+	public ModelAndView searchGoodsTest(@RequestParam("searchWord") String searchWord,
+			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		HttpSession session=request.getSession();	//장바구니 카운터 때문에MainController에서 정보 담김
+		
+		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
+		
+		
+		mav.addObject("goodsList", goodsList);
+		return mav;
+		
+	}
+	
 }

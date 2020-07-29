@@ -59,7 +59,7 @@ public class MainController extends BaseController {
 			cartVO.setMember_id(member_id);
 			
 			int cartCount = cartService.cartCount(cartVO);
-			mav.addObject("cartCount", cartCount);
+			session.setAttribute("cartCount", cartCount);
 		} else {
 		
 		}

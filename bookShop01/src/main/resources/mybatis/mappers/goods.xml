@@ -50,7 +50,7 @@
         	and goods_status=#{goodsStatus}
          order by g.goods_creDate DESC
 				) t, (SELECT @rownum:=0) tmp
-	             WHERE @rownum<16;
+	             WHERE @rownum<16
         ]]>
         </select>
       <!-- 
@@ -90,21 +90,27 @@
 	    <![CDATA[
 		    	select * from  t_goods_detail_image 
 		    	where  fileType!='main_image'
-				and goods_id=#{goods_id};
+				and goods_id=#{goods_id}
     	]]>
 	</select>
 	<!-- 완 -->
    <select id="selectGoodsBySearchWord" resultMap="goodsResult"   parameterType="String"  >
      <![CDATA[
-     select g.*,d.fileName 
-	from t_shopping_goods g, t_goods_detail_image d
-		    where g.goods_id=d.goods_id
-		    and d.filetype='main_image'
-		    and g.goods_title LIKE CONCAT('%',#{searchWord},'%')
-		    order by g.goods_creDate DESC;
-	
+	     select g.*,d.fileName 
+		 from t_shopping_goods g, t_goods_detail_image d
+		 where g.goods_id=d.goods_id
+		 and d.filetype='main_image'
+		 and g.goods_title LIKE CONCAT('%',#{searchWord},'%')
+		 order by g.goods_creDate DESC
      ]]>
-		
+     	<!-- 페이징 쿼리 -->
+		<!-- select g.*,d.fileName 
+		 from t_shopping_goods g, t_goods_detail_image d
+		 where g.goods_id=d.goods_id
+		 and d.filetype='main_image'
+		 and g.goods_title LIKE CONCAT('%',#{searchWord},'%')
+		 order by g.goods_creDate DESC
+		 LIMIT #{start}, #{end} -->
 	</select>	
 	<!-- 완 -->
 	<select id="selectKeywordSearch" resultType="String"   parameterType="String"  >

@@ -75,6 +75,7 @@
 		<div class="clear"></div>
 	</section>
 	<div class="clear"></div>
+	<!-- 시작 -->
 	<div id="sorting">
 		<ul>
 			<li><a class="active" href="#">베스트 셀러</a></li>
@@ -137,3 +138,4 @@
 			<li><a class="no_border" href="#">Next</a></li>
 		</ul>
 	</div>
+</body>

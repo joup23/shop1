@@ -23,6 +23,15 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer2.jsp" />
 	</definition>
+	<!-- Goods -->
+	<definition name="baseLayout3" template="/WEB-INF/views/common/layoutGoods.jsp">
+		<put-attribute name="title" value="레이아웃 페이지" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header2.jsp" />
+		<put-attribute name="fullStop" value="/WEB-INF/views/common/fullStop.jsp"/>
+		<put-attribute name="body" value="" />
+		<put-attribute name="side" value="/WEB-INF/views/common/quickMenu2.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer2.jsp" />
+	</definition>
 	
 	
 	<definition name="/test/main" extends="baseLayout2">

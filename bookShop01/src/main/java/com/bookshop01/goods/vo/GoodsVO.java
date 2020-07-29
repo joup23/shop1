@@ -24,7 +24,8 @@ public class GoodsVO {
 	private String goods_publisher_comment;
 	private String goods_recommendation;
 	private Date   goods_credate;
-	
+
+
 	public GoodsVO() {
 	}
 

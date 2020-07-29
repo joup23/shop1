@@ -12,7 +12,7 @@
 
 				<div id="search"
 					class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-					<form name="frmSearch" action="${contextPath}/goods/searchGoods.do"
+					<form name="frmSearch" action="${contextPath}/goods/searchGoodsTest.do"
 						class="site-block-top-search">
 						<span class="icon icon-search2"></span> <input type="text"
 							name="searchWord" onKeyUp="keywordSearch()"
