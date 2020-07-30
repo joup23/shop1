@@ -427,8 +427,63 @@
 		display: none;
 	}
 }
+
 @media ( max-width :768px) {
 	.rel {
 		position: relative;
+	}
+}
+
+.goodsImg {
+	width: 150px;
+	text-align: center;
+	box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.9) !important;
+}
+
+.pad {
+	padding: 10px;
+}
+
+.pad-top {
+	padding-top: 10px
+}
+
+.height-auto {
+	height: auto;
+	text-align: center;
+	margin: auto;
+}
+
+.center {
+	margin: auto;
+}
+
+.margin-top {
+	margin-top: 1rem;
+}
+.margin-top-bottom {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.bottom_no_margin {
+	margin-bottom: 0 !important;
+}
+.right_no_margin {
+	margin-right: 0 !important;
+}
+.text-center {
+	text-align: center;
+}
+
+.tab_container {
+	padding-top: 10px;
+}
+.btn.btn-smGood {
+    font-size: 14px !important;
+    padding: 10px 20px ; }
+@media ( max-width :992px) {
+	.good-button{
+	padding: 5px 10px !important;
+	letter-spacing: 0 !important;
 	}
 }

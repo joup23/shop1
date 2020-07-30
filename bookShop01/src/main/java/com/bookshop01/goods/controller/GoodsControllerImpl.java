@@ -126,5 +126,17 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 		return mav;
 		
 	}
+	@RequestMapping(value="/goodsDetailTest.do" ,method = RequestMethod.GET)
+	public ModelAndView goodsDetailTest(@RequestParam("goods_id") String goods_id,
+			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		HttpSession session=request.getSession();
+		Map goodsMap=goodsService.goodsDetail(goods_id);
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("goodsMap", goodsMap);
+		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
+		addGoodsInQuick(goods_id,goodsVO,session);
+		return mav;
+	}
 	
 }

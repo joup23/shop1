@@ -122,18 +122,17 @@
 		<footer class="site-footer border-top">
 			<tiles:insertAttribute name="footer" />
 		</footer>
-		
-		<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-		<script src="${contextPath}/resources/js/jquery-ui.js"></script>
-		<script src="${contextPath}/resources/js/popper.min.js"></script>
-		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-		<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
-		<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-		<script src="${contextPath}/resources/js/aos.js"></script>
 
-		<script src="${contextPath}/resources/js/main.js"></script>
-		
 	</div>
+	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
+	<script src="${contextPath}/resources/js/popper.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="${contextPath}/resources/js/aos.js"></script>
+
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 
