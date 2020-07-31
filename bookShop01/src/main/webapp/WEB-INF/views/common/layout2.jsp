@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
-
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -110,20 +110,15 @@
 
 </head>
 <body>
-	<div id="site-wrap">
+	<tiles:insertAttribute name="header" />
+	<article>
+		<tiles:insertAttribute name="body" />
+	</article>
+	<div class="clear"></div>
+	<footer class="site-footer border-top">
+		<tiles:insertAttribute name="footer" />
+	</footer>
 
-		<header class="site-navbar" role="banner">
-			<tiles:insertAttribute name="header" />
-		</header>
-		<article>
-			<tiles:insertAttribute name="body" />
-		</article>
-		<div class="clear"></div>
-		<footer class="site-footer border-top">
-			<tiles:insertAttribute name="footer" />
-		</footer>
-
-	</div>
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
 	<script src="${contextPath}/resources/js/popper.min.js"></script>
@@ -133,6 +128,6 @@
 	<script src="${contextPath}/resources/js/aos.js"></script>
 
 	<script src="${contextPath}/resources/js/main.js"></script>
-
+	</div>
 </body>
-
+</html>

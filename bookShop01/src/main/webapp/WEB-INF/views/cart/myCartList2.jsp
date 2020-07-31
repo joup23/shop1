@@ -181,7 +181,7 @@
 		}
 
 		objForm.method = "post";
-		objForm.action = "${contextPath}/order/orderAllCartGoods.do";
+		objForm.action = "${contextPath}/order/orderAllCartGoodsTest.do";
 		objForm.submit();
 	}
 </script>
@@ -190,96 +190,98 @@
 	<div class="site-section">
 		<div class="container">
 			<div class="row mb-5">
-				<form class="col-md-12" method="post">
-					<div class="site-blocks-table">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th class="product-thumbnail">이미지</th>
-									<th class="product-name">도서 이름</th>
-									<th class="product-price">가격</th>
-									<th class="product-quantity">수량</th>
-									<th class="product-total">가격</th>
-									<th class="product-remove">지우기</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:choose>
-									<c:when test="${ empty myCartList }">
-										<tr>
-											<td colspan=6>장바구니에 상품이 없습니다.</td>
-										</tr>
-									</c:when>
-									<c:otherwise>
+				<div class="site-blocks-table">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="product-quantity">구분</th>
+								<th class="product-thumbnail">이미지</th>
+								<th class="product-name">도서 이름</th>
+								<th class="product-price">가격</th>
+								<th class="product-quantity">수량</th>
+								<th class="product-total">가격</th>
+								<th class="product-remove">지우기</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:choose>
+								<c:when test="${ empty myCartList }">
+									<tr>
+										<td colspan=6>장바구니에 상품이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
 
-										<form name="frm_order_all_cart">
-											<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-												<tr>
-													<c:set var="cart_goods_qty"
-														value="${myCartList[cnt.count-1].cart_goods_qty}" />
-													<c:set var="cart_id"
-														value="${myCartList[cnt.count-1].cart_id}" />
-													<td class="product-thumbnail"><img
-														src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"
-														alt="Image" class="img-fluid"></td>
-													<td class="product-name">
-														<h2 class="h5 text-black">${item.goods_title }</h2>
-													</td>
-													<td><p>
-															<fmt:formatNumber value="${item.goods_price }"
-																type="number" var="price" />
-															${price }원
-														</p>
-														<p>
-															<fmt:formatNumber value="${item.goods_sales_price*0.9}"
-																type="number" var="discounted_price" />
-															${discounted_price}원(10%할인)
-														</p></td>
-													<td>
-														<div class="input-group mb-3 bottom_no_margin text-center" style="max-width: 120px;">
-															<div class="input-group-prepend">
-																<button class="btn btn-outline-primary js-btn-minus"
-																	type="button">&minus;</button>
-															</div>
-															<input type="text" class="form-control text-center"
-																value="${cart_goods_qty}" placeholder=""
-																aria-label="Example text with button addon"
-																name="cart_goods_qty" id="cart_goods_qty"
-																aria-describedby="button-addon1">
-															<!-- 수량에따른 가격변경 할것 -->
-															<div class="input-group-append">
-																<button class="btn btn-outline-primary js-btn-plus"
-																	type="button">&plus;</button>
-															</div>
-															
+									<form name="frm_order_all_cart">
+										<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
+											<tr>
+												<c:set var="cart_goods_qty"
+													value="${myCartList[cnt.count-1].cart_goods_qty}" />
+												<c:set var="cart_id"
+													value="${myCartList[cnt.count-1].cart_id}" />
+												<td><input type="checkbox" name="checked_goods" checked
+													value="${item.goods_id }"
+													onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
+												<td class="product-thumbnail"><img
+													src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"
+													alt="Image" class="img-fluid"></td>
+												<td class="product-name">
+													<h2 class="h5 text-black">${item.goods_title }</h2>
+												</td>
+												<td><p class="text-secondaryGoods">
+														<fmt:formatNumber value="${item.goods_price }"
+															type="number" var="price" />
+														${price }원
+													</p>
+													<p class="text-dangerGoods font-weight-bold">
+														<fmt:formatNumber value="${item.goods_sales_price*0.9}"
+															type="number" var="discounted_price" />
+														${discounted_price}원(10%할인)
+													</p></td>
+												<td>
+													<div class="input-group mb-3 bottom_no_margin text-center"
+														style="max-width: 120px;">
+														<div class="input-group-prepend">
+															<button class="btn btn-outline-primary js-btn-minus"
+																type="button">&minus;</button>
 														</div>
-														<a 
-														href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });"
-														class="btn btn-smCustom btn-secondary">수량변경</a>
-													</td>
-													<td><fmt:formatNumber
-															value="${item.goods_sales_price*0.9*cart_goods_qty}"
-															type="number" var="total_sales_price" />
-														${total_sales_price}원</td>
-													<td><a
-														href="javascript:delete_cart_goods('${cart_id}');"
-														class="btn btn-primary btn-sm">X</a></td>
-												</tr>
-												<c:set var="totalGoodsPrice"
-													value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
-												<c:set var="totalGoodsNum" value="${totalGoodsNum+cart_goods_qty }" />
-											</c:forEach>
-										</form>
-									</c:otherwise>
-								</c:choose>
+														<input type="text" class="form-control text-center"
+															value="${cart_goods_qty}" placeholder=""
+															aria-label="Example text with button addon"
+															name="cart_goods_qty" id="cart_goods_qty"
+															aria-describedby="button-addon1">
+														<!-- 수량에따른 가격변경 할것 -->
+														<div class="input-group-append">
+															<button class="btn btn-outline-primary js-btn-plus"
+																type="button">&plus;</button>
+														</div>
+
+													</div> <a
+													href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });"
+													class="btn btn-smCustom btn-secondary">수량변경</a>
+												</td>
+												<td><fmt:formatNumber
+														value="${item.goods_sales_price*0.9*cart_goods_qty}"
+														type="number" var="total_sales_price" />
+													${total_sales_price}원</td>
+												<td><a
+													href="javascript:delete_cart_goods('${cart_id}');"
+													class="btn btn-primary btn-sm">X</a></td>
+											</tr>
+											<c:set var="totalGoodsPrice"
+												value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
+											<c:set var="totalGoodsNum"
+												value="${totalGoodsNum+cart_goods_qty }" />
+										</c:forEach>
+								</c:otherwise>
+							</c:choose>
 
 
 
 
-							</tbody>
-						</table>
-					</div>
-				</form>
+						</tbody>
+					</table>
+				</div>
 			</div>
 
 			<div class="row">
@@ -287,7 +289,8 @@
 					<div class="row mb-5">
 
 						<div class="col-md-6">
-							<button class="btn btn-outline-primary btn-sm btn-block">쇼핑 계속하기</button>
+							<button class="btn btn-outline-primary btn-sm btn-block">쇼핑
+								계속하기</button>
 						</div>
 					</div>
 					<div class="row">
@@ -328,7 +331,17 @@
 								</div>
 								<div class="col-md-6 text-right">
 
-									<strong class="text-black"> <fmt:formatNumber
+									<input id="h_totalGoodsNum" type="hidden"
+										value="${totalGoodsNum}" />
+									<fmt:formatNumber value="${totalGoodsPrice}" type="number"
+										var="total_goods_price" />
+									${total_goods_price}원 <input id="h_totalGoodsPrice"
+										type="hidden" value="${totalGoodsPrice}" /> <input
+										id="h_totalDeliveryPrice" type="hidden"
+										value="${totalDeliveryPrice}" /> <input
+										id="h_totalSalesPrice" type="hidden"
+										value="${totalSalesPrice}" /> <strong class="text-black">
+										<fmt:formatNumber
 											value="${totalGoodsPrice+totalDeliveryPrice-totalDiscountedPrice}"
 											type="number" var="total_price" /> ${total_price}원
 									</strong> <input id="h_final_totalPrice" type="hidden"
@@ -338,15 +351,15 @@
 
 							<div class="row">
 								<div class="col-md-12">
-									<button class="btn btn-primary btn-lg py-3 btn-block"
-										onclick="window.location='checkout.html'">상품 결제</button>
+									<a class="btn btn-primary btn-lg py-3 btn-block"
+										href="javascript:fn_order_all_cart_goods()">상품 결제</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	F
 </body>

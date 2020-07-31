@@ -39,6 +39,7 @@
 	    <![CDATA[
 		select * from t_shopping_cart 
 		where member_id=#{member_id} 
+		
 		]]>
 	</select>
 
@@ -52,7 +53,6 @@
 		<foreach item="item" collection="list" open="(" separator="," close=")">
 			#{item.goods_id}
 		</foreach>
-		order by g.goods_creDate desc
 	</select>
 	<!-- 완 -->
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">

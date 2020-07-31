@@ -16,6 +16,11 @@
        <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
     </definition>
     
+    <definition name="/order/orderAllCartGoodsTest" extends="baseLayout2">
+       <put-attribute name="title" value="상품 주문 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm2.jsp" />
+    </definition> 
+    
 </tiles-definitions>
 
 

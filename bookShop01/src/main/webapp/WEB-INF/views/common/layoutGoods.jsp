@@ -102,30 +102,25 @@
 
 </head>
 <body>
-	<div id="site-wrap">
+	<tiles:insertAttribute name="header" />
+	<tiles:insertAttribute name="fullStop" />
+	<div class="site-section">
+		<div class="container">
+			<div class="row mb-5">
 
-		<header class="site-navbar" role="banner">
-			<tiles:insertAttribute name="header" />
-		</header>
-		<tiles:insertAttribute name="fullStop" />
-		<div class="site-section">
-			<div class="container">
-				<div class="row mb-5">
-
-					<tiles:insertAttribute name="body" />
+				<tiles:insertAttribute name="body" />
 
 
-					<tiles:insertAttribute name="side" />
+				<tiles:insertAttribute name="side" />
 
-				</div>
 			</div>
 		</div>
-		<footer class="site-footer border-top">
-			<tiles:insertAttribute name="footer" />
-		</footer>
-
-
 	</div>
+	<footer class="site-footer border-top">
+		<tiles:insertAttribute name="footer" />
+	</footer>
+
+
 
 	<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery-ui.js"></script>
@@ -136,5 +131,6 @@
 	<script src="${contextPath}/resources/js/aos.js"></script>
 
 	<script src="${contextPath}/resources/js/main.js"></script>
+	</div>
 </body>
 </html>

@@ -45,8 +45,8 @@
 	</definition>
 	<definition name="/test/*" extends="empty">
 		<put-attribute name="content" value="/WEB-INF/views/test/{1}.jsp"></put-attribute>
-	</definition>
- -->
+	</definition> -->
+
 
 </tiles-definitions>
 

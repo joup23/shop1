@@ -133,9 +133,6 @@
 	}
 }
 
-.site-section.site-section-sm {
-	padding: 4em 0;
-}
 
 .item {
 	height: 384.33px;
@@ -465,6 +462,9 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
+.margin-bottom {
+	margin-bottom: 1rem;
+}
 .bottom_no_margin {
 	margin-bottom: 0 !important;
 }
@@ -486,4 +486,8 @@
 	padding: 5px 10px !important;
 	letter-spacing: 0 !important;
 	}
+}
+.border-top-bottom{
+	border-top: 1px solid #edf0f5 !important;
+	border-bottom: 1px solid #edf0f5 !important;
 }
