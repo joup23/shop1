@@ -50,4 +50,10 @@ public class CartDAOImpl  implements  CartDAO{
 		return cart_id;
 	}
 
+	@Override
+	public int cartCount(CartVO cartVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.cart.countCart", cartVO);
+	}
+	
 }

@@ -244,7 +244,7 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
 					<td>
-					  <input name="member_pw" type="password" size="20" value="${memberInfo.member_pw }" />
+					  <input name="member_pw" type="password" size="20" value="" />
 					</td>
 					<td>
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_pw')" />

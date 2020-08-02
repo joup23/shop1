@@ -19,6 +19,25 @@
 		</layout>
 	</appender>
 	
+	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="C:\\shopping\\logs\\bookshop2.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+		  <param name="DatePattern"   value="'.'yyyy-MM-dd"/>
+			<param name="ConversionPattern"   value="[%d{HH:mm:ss}][%-5p](%F:%L)-%m%n"/>
+		</layout>
+	</appender>
+	
+	<!-- Query Loggers -->
+     <logger name="jdbc.sqlonly" additivity="false"> 
+       <level value="debug"/>
+       <appender-ref ref="fileAppender"/>
+     </logger>
+         
+     <logger name="jdbc.resultsettable" additivity="false"> 
+       <level value="debug"/>
+       <appender-ref ref="fileAppender"/>
+     </logger>
+     <!--  -->
 	
 	<!-- Application Loggers -->
 	<logger name="com.bookshop01">
@@ -43,10 +62,10 @@
 	</logger>
 
 	<!-- Root Logger -->
-	<root>
+	<!-- <root>
 		<priority value="debug" />
 		<appender-ref ref="console" />
 		<appender-ref ref="dailyFileAppender" />
-	</root>
+	</root> -->
 	
 </log4j:configuration>

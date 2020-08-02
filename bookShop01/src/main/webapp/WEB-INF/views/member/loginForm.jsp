@@ -9,13 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <c:if test='${not empty message }'>
 <script>
+var message = "${message}"
 window.onload=function()
 {
   result();
 }
 
 function result(){
-	alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
+	alert(message);
 }
 </script>
 </c:if>

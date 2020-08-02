@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,8 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Autowired
 	private MemberVO memberVO;
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
@@ -125,6 +128,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	public ResponseEntity modifyMyInfo(@RequestParam("attribute")  String attribute,
 			                 @RequestParam("value")  String value,
 			               HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		
 		Map<String,String> memberMap=new HashMap<String,String>();
 		String val[]=null;
 		HttpSession session=request.getSession();
@@ -158,6 +162,13 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			memberMap.put("roadAddress",val[1]);
 			memberMap.put("jibunAddress", val[2]);
 			memberMap.put("namujiAddress", val[3]);
+		}else if(attribute.equals("member_pw")){
+			String inputPass = value;
+			System.out.println(inputPass);
+			String pass = passEncoder.encode(inputPass);
+			memberVO.setMember_pw(pass);
+			System.out.println(pass);
+			memberMap.put("member_pw", pass);
 		}else {
 			memberMap.put(attribute,value);	
 		}

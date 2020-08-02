@@ -48,5 +48,11 @@ public class CartServiceImpl  implements CartService{
 	public void removeCartGoods(int cart_id) throws Exception{
 		cartDAO.deleteCartGoods(cart_id);
 	}
+
+	@Override
+	public int cartCount(CartVO cartVO) throws Exception {
+		// TODO Auto-generated method stub
+		return cartDAO.cartCount(cartVO);
+	}
 	
 }

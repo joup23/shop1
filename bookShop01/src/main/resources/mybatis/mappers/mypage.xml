@@ -60,7 +60,7 @@
 	    <![CDATA[
 		  select * from t_shopping_order
           where member_id=#{member_id}
-          and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+          and  date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
           order by pay_order_time desc
     	]]>
 	</select>	

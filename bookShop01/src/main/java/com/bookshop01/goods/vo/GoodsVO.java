@@ -1,7 +1,6 @@
 package com.bookshop01.goods.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class GoodsVO {
 	private int goods_id;
@@ -25,7 +24,8 @@ public class GoodsVO {
 	private String goods_publisher_comment;
 	private String goods_recommendation;
 	private Date   goods_credate;
-	
+
+
 	public GoodsVO() {
 	}
 

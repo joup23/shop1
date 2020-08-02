@@ -109,6 +109,7 @@ function delete_cart_goods(cart_id){
     formObj.submit();
 }
 
+
 function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	var total_price,final_total_price,_goods_qty;
 	var cart_goods_qty=document.getElementById("cart_goods_qty");

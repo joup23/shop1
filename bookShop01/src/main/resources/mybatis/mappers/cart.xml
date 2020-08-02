@@ -39,6 +39,7 @@
 	    <![CDATA[
 		select * from t_shopping_cart 
 		where member_id=#{member_id} 
+		
 		]]>
 	</select>
 
@@ -52,15 +53,13 @@
 		<foreach item="item" collection="list" open="(" separator="," close=")">
 			#{item.goods_id}
 		</foreach>
-		order by g.goods_creDate desc
 	</select>
-
+	<!-- 완 -->
 	<select id="selectCountInCart" resultType="String" parameterType="cartVO">
 	    <![CDATA[
-		    select decode(count(*), 0, 'false', 'true') from t_shopping_cart
+	    select if(COUNT(*)=0, 'false', 'true') from t_shopping_cart
 			where goods_id=#{goods_id}
-			  and member_id=#{member_id} 
-
+			  and member_id=#{member_id} ; 
     	]]>
 	</select>
 
@@ -74,7 +73,7 @@
     							        #{member_id})
     	]]>
 	</insert>
-
+<!-- 문X -->
 	<update id="updateCartGoodsQty" parameterType="cartVO">
 	    <![CDATA[
 			update t_shopping_cart
@@ -90,10 +89,17 @@
     	]]>
 	</delete>
 	
+	<!-- 완 -->
 	<select id="selectMaxCartId" resultType="int">
 	    <![CDATA[
-			select nvl(max(cart_id), 0) + 1 from t_shopping_cart 
+			select ifnull(max(cart_id), 0) + 1 from t_shopping_cart 
     	]]>
 	</select>
-
+	
+	<select id="countCart" resultType="int" parameterType="cartVO">
+		<![CDATA[
+			select COUNT(*)as count from t_shopping_cart 
+			where member_id=#{member_id}
+		]]>
+	</select>
 </mapper>
