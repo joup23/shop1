@@ -55,114 +55,214 @@
 							var expJibunAddr = data.autoJibunAddress;
 							document.getElementById('guide').innerHTML = '(예상 지번 주소 : '
 									+ expJibunAddr + ')';
+
 						} else {
 							document.getElementById('guide').innerHTML = '';
 						}
-
 					}
 				}).open();
 	}
 
-	function fn_overlapped() {
-		var _id = $('#_member_id').val();
+	window.onload = function() {
+		selectBoxInit();
+	}
+
+	function selectBoxInit() {
+
+		var tel1 = '${memberInfo.tel1 }';
+		var hp1 = '${memberInfo.hp1}';
+		var selTel1 = document.getElementById('tel1');
+		var selHp1 = document.getElementById('hp1');
+		var optionTel1 = selTel1.options;
+		var optionHp1 = selHp1.options;
+		var val;
+		for (var i = 0; i < optionTel1.length; i++) {
+			val = optionTel1[i].value;
+			if (tel1 == val) {
+				optionTel1[i].selected = true;
+				break;
+			}
+		}
+
+		for (var i = 0; i < optionHp1.length; i++) {
+			val = optionHp1[i].value;
+			if (hp1 == val) {
+				optionHp1[i].selected = true;
+				break;
+			}
+		}
+
+	}
+
+	function fn_modify_member_info(attribute) {
+		var value;
+		// alert(member_id);
+		// alert("mod_type:"+mod_type);
+		var frm_mod_member = document.frm_mod_member;
+		if (attribute == 'member_pw') {
+			value = frm_mod_member.member_pw.value;
+			//alert("member_pw:"+value);
+		} else if (attribute == 'member_gender') {
+			var member_gender = frm_mod_member.member_gender;
+			for (var i = 0; member_gender.length; i++) {
+				if (member_gender[i].checked) {
+					value = member_gender[i].value;
+					break;
+				}
+			}
+
+		} else if (attribute == 'member_birth') {
+			var member_birth_y = frm_mod_member.member_birth_y;
+			var member_birth_m = frm_mod_member.member_birth_m;
+			var member_birth_d = frm_mod_member.member_birth_d;
+			var member_birth_gn = frm_mod_member.member_birth_gn;
+
+			for (var i = 0; member_birth_y.length; i++) {
+				if (member_birth_y[i].selected) {
+					value_y = member_birth_y[i].value;
+					break;
+				}
+			}
+			for (var i = 0; member_birth_m.length; i++) {
+				if (member_birth_m[i].selected) {
+					value_m = member_birth_m[i].value;
+					break;
+				}
+			}
+
+			for (var i = 0; member_birth_d.length; i++) {
+				if (member_birth_d[i].selected) {
+					value_d = member_birth_d[i].value;
+					break;
+				}
+			}
+
+			//alert("수정 년:"+value_y+","+value_m+","+value_d);
+			for (var i = 0; member_birth_gn.length; i++) {
+				if (member_birth_gn[i].checked) {
+					value_gn = member_birth_gn[i].value;
+					break;
+				}
+			}
+			//alert("생년 양음년 "+value_gn);
+			value = +value_y + "," + value_m + "," + value_d + "," + value_gn;
+		} else if (attribute == 'tel') {
+			var tel1 = frm_mod_member.tel1;
+			var tel2 = frm_mod_member.tel2;
+			var tel3 = frm_mod_member.tel3;
+
+			for (var i = 0; tel1.length; i++) {
+				if (tel1[i].selected) {
+					value_tel1 = tel1[i].value;
+					break;
+				}
+			}
+			value_tel2 = tel2.value;
+			value_tel3 = tel3.value;
+			value = value_tel1 + "," + value_tel2 + ", " + value_tel3;
+		} else if (attribute == 'hp') {
+			var hp1 = frm_mod_member.hp1;
+			var hp2 = frm_mod_member.hp2;
+			var hp3 = frm_mod_member.hp3;
+			var smssts_yn = frm_mod_member.smssts_yn;
+
+			for (var i = 0; hp1.length; i++) {
+				if (hp1[i].selected) {
+					value_hp1 = hp1[i].value;
+					break;
+				}
+			}
+			value_hp2 = hp2.value;
+			value_hp3 = hp3.value;
+			value_smssts_yn = smssts_yn.checked;
+			value = value_hp1 + "," + value_hp2 + ", " + value_hp3 + ","
+					+ value_smssts_yn;
+		} else if (attribute == 'email') {
+			var email1 = frm_mod_member.email1;
+			var email2 = frm_mod_member.email2;
+			var emailsts_yn = frm_mod_member.emailsts_yn;
+
+			value_email1 = email1.value;
+			value_email2 = email2.value;
+			value_emailsts_yn = emailsts_yn.checked;
+			value = value_email1 + "," + value_email2 + "," + value_emailsts_yn;
+			//alert(value);
+		} else if (attribute == 'address') {
+			var zipcode = frm_mod_member.zipcode;
+			var roadAddress = frm_mod_member.roadAddress;
+			var jibunAddress = frm_mod_member.jibunAddress;
+			var namujiAddress = frm_mod_member.namujiAddress;
+
+			value_zipcode = zipcode.value;
+			value_roadAddress = roadAddress.value;
+			value_jibunAddress = jibunAddress.value;
+			value_namujiAddress = namujiAddress.value;
+			value = value_zipcode + "," + value_roadAddress + ","
+					+ value_jibunAddress + "," + value_namujiAddress;
+		}
+		console.log(attribute);
 
 		$.ajax({
-			url : '${contextPath}/member/overlapped.do',
-			type : 'post',
-			async : false,
-			dataType : "text",
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/mypage/modifyMyInfo.do",
 			data : {
-				id : _id
+				attribute : attribute,
+				value : value,
 			},
 			success : function(data, textStatus) {
-				if (data == 'false') {
-					$('#chkMsg').html("사용가능한 아이디입니다.");
-					$('#chkMsg').css('color', 'blue')
-					$('#chkMsg').css('font-size', '12px')
-					$('#member_id').val(_id);
-				} else if (_id == '') {
-					$('#chkMsg').html("아이디를 입력해주세요.");
-					$('#chkMsg').css('color', '#8c92a0')
-					$('#chkMsg').css('font-size', '12px')
-				} else {
-					$('#chkMsg').html("중복된 아이디입니다.");
-					$('#chkMsg').css('color', 'red')
-					$('#chkMsg').css('font-size', '12px')
+				if (data.trim() == 'mod_success') {
+					alert("회원 정보를 수정했습니다.");
+				} else if (data.trim() == 'failed') {
+					alert("다시 시도해 주세요.");
 				}
-			},
-			error : function() {
-				alert("에러입니다");
-			}
-		});
-	};
 
-	/*원본 function fn_overlapped(){
-	 var _id=$("#_member_id").val();
-	 if(_id==''){
-	 alert("ID를 입력하세요");
-	 return;
-	 }
-	 $.ajax({
-	 type:"post",
-	 async:false,  
-	 url:"${contextPath}/member/overlapped.do",
-	 dataType:"text",
-	 data: {id:_id},
-	 success:function (data,textStatus){
-	 if(data=='false'){
-	 alert("사용할 수 있는 ID입니다.");
-	 $('#btnOverlapped').prop("disabled", true);
-	 $('#_member_id').prop("disabled", true);
-	 $('#member_id').val(_id);
-	 }else{
-	 alert("사용할 수 없는 ID입니다.");
-	 }
-	 },
-	 error:function(data,textStatus){
-	 alert("에러가 발생했습니다.");ㅣ
-	 },
-	 complete:function(data,textStatus){
-	 //alert("작업을완료 했습니다");
-	 }
-	 });  //end ajax	 
-	 } */
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다." + data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+
+			}
+		}); //end ajax
+	}
 </script>
 </head>
+
 <body>
-	<div class="site-section3">
-		<div class="containerLogin">
-			<div class="row">
-				<div class="col-md-12">
-					<h2 class="h3 mb-3 text-black">회원가입</h2>
+	<div class="col-md-9 order-2">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md-12 mb-5">
+					<h2 class="h3 mb-3 text-black">내 상세 정보</h2>
 				</div>
 				<div class="col-md-72">
 
-					<form action="${contextPath}/member/addMember.do" method="post">
+					<form name="frm_mod_member">
 
 						<div class="p-3 p-lg-5 border">
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="c_fname" class="text-black">아이디 <span
-										class="text-danger">*</span></label> <input type="text"
-										class="form-controlMemberId" id="_member_id" name="_member_id"
-										oninput="fn_overlapped()"> <input type="hidden"
-										name="member_id" id="member_id" /> <span id="chkMsg">
-										<span id="chkMsg" class="chkMsg">아이디를 입력 해주세요.</span>
+									<label for="c_fname" class="text-black">아이디</label> <input
+										type="text" class="form-controlMemberId" name="_member_id"
+										value="${memberInfo.member_id }" disabled>
 								</div>
 
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="c_email" class="text-black">비밀번호 <span
-										class="text-danger">*</span></label> <input type="password"
-										class="form-controlMemberId" id="member_pw" name="member_pw"
-										placeholder="">
+									<label for="c_email" class="text-black block">비밀번호 </label> <input
+										type="password" class="form-controlMemberInfo" id="member_pw"
+										name="member_pw" placeholder=""> <input type="button"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										value="수정하기" onClick="fn_modify_member_info('member_pw')" />
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label for="c_fname" class="text-black">이름 <span
-										class="text-danger">*</span></label> <input type="text"
+									<label for="c_fname" class="text-black block">이름</label> <input
+										type="text" value="${memberInfo.member_name }" disabled
 										class="form-controlMemberId" name="member_name">
 								</div>
 
@@ -173,9 +273,19 @@
 
 								</div>
 								<div class="col-md-12">
-
-									<input type="radio" name="member_gender" value="102" checked/> 남성 <input
-										type="radio" name="member_gender" value="101"  /> 여성
+									<c:choose>
+										<c:when test="${memberInfo.member_gender =='101' }">
+											<input type="radio" name="member_gender" value="102" checked />
+									남성 <input type="radio" name="member_gender" value="101" /> 여성
+									</c:when>
+										<c:otherwise>
+											<input type="radio" name="member_gender" value="102" />
+									남성 <input type="radio" name="member_gender" value="101" checked /> 여성
+									</c:otherwise>
+									</c:choose>
+									<input type="button" value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('member_gender')" />
 								</div>
 							</div>
 
@@ -188,14 +298,13 @@
 										name="member_birth_y" class="form-controlMemberForm select1"
 										onmousedown="if(this.options.length>6){this.size=6;}"
 										onchange='this.size=0;' onblur="this.size=0;">
-											<c:forEach var="year" begin="1" end="100">
+											<c:forEach var="i" begin="1" end="100">
 												<c:choose>
-													<c:when test="${year==80}">
-														<option value="${ 1920+year}" selected>${ 1920+year}
-														</option>
+													<c:when test="${memberInfo.member_birth_y==1920+i }">
+														<option value="${ 1920+i}" selected>${ 1920+i}</option>
 													</c:when>
 													<c:otherwise>
-														<option value="${ 1920+year}">${ 1920+year}</option>
+														<option value="${ 1920+i}">${ 1920+i}</option>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
@@ -204,13 +313,13 @@
 										name="member_birth_m" class="form-controlMemberForm select1"
 										onmousedown="if(this.options.length>6){this.size=6;}"
 										onchange='this.size=0;' onblur="this.size=0;">
-											<c:forEach var="month" begin="1" end="12">
+											<c:forEach var="i" begin="1" end="12">
 												<c:choose>
-													<c:when test="${month==5 }">
-														<option value="${month }" selected>${month }</option>
+													<c:when test="${memberInfo.member_birth_m==i }">
+														<option value="${i }" selected>${i }</option>
 													</c:when>
 													<c:otherwise>
-														<option value="${month }">${month}</option>
+														<option value="${i }">${i }</option>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
@@ -219,13 +328,13 @@
 										name="member_birth_d" class="form-controlMemberForm select1"
 										onmousedown="if(this.options.length>6){this.size=6;}"
 										onchange='this.size=0;' onblur="this.size=0;">
-											<c:forEach var="day" begin="1" end="31">
+											<c:forEach var="i" begin="1" end="31">
 												<c:choose>
-													<c:when test="${day==10 }">
-														<option value="${day}" selected>${day}</option>
+													<c:when test="${memberInfo.member_birth_d==i }">
+														<option value="${i }" selected>${i }</option>
 													</c:when>
 													<c:otherwise>
-														<option value="${day}">${day}</option>
+														<option value="${i }">${i }</option>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
@@ -233,9 +342,21 @@
 									</span> 일 <span style="padding-left: 50px"></span>
 								</div>
 								<div class="col-md-12">
-									<input type="radio" name="member_birth_gn" value="2" checked />&nbsp;양력&nbsp;
-									<input type="radio" name="member_birth_gn" value="1" />&nbsp;음력&nbsp;
-
+									<c:choose>
+										<c:when test="${memberInfo.member_birth_gn=='2' }">
+											<input type="radio" name="member_birth_gn" value="2" checked />양력
+						
+											<input type="radio" name="member_birth_gn" value="1" />음력
+										</c:when>
+										<c:otherwise>
+											<input type="radio" name="member_birth_gn" value="2" />양력
+						  					<input type="radio" name="member_birth_gn" value="1"
+												checked />음력
+										</c:otherwise>
+									</c:choose>
+									<input type="button" value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('member_birth')" />
 								</div>
 							</div>
 
@@ -275,10 +396,13 @@
 											<option value="070">070</option>
 									</select>
 									</span> - <input size="10px" type="text" name="tel2"
-										class="form-controlMemberFormInput"> - <input
-										size="10px" type="text" name="tel3"
-										class="form-controlMemberFormInput">
-
+										class="form-controlMemberFormInput"
+										value="${memberInfo.tel2 }"> - <input size="10px"
+										type="text" name="tel3" class="form-controlMemberFormInput"
+										value="${memberInfo.tel3 }"> <input type="button"
+										value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('tel')" />
 								</div>
 							</div>
 							<div class="form-group row">
@@ -299,10 +423,12 @@
 											<option value="019">019</option>
 									</select>
 									</span> - <input size="10px" type="text" name="hp2"
-										class="form-controlMemberFormInput"> - <input
-										size="10px" type="text" name="hp3"
-										class="form-controlMemberFormInput">
-
+										value="${memberInfo.hp2 }" class="form-controlMemberFormInput">
+									- <input size="10px" type="text" name="hp3"
+										value="${memberInfo.hp3 }" class="form-controlMemberFormInput">
+									<input type="button" value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('hp')" />
 								</div>
 							</div>
 
@@ -312,8 +438,10 @@
 								</div>
 								<div class="col-md-12">
 									<input size="10px" type="text" name="email1"
+										value="${memberInfo.email1 }"
 										class="form-controlMemberFormInput"> @ <input
 										size="10px" type="text" name="email2"
+										value="${memberInfo.email2 }"
 										class="form-controlMemberFormInput"> <span
 										class="select-holder"> <select name="email2"
 										class="form-controlMemberForm select2"
@@ -335,9 +463,21 @@
 									</span>
 
 								</div>
+
 								<div class="col-md-12">
-									<input type="checkbox" name="emailsts_yn" value="Y" checked />
+									<c:choose>
+										<c:when test="${memberInfo.emailsts_yn=='true' }">
+											<input type="checkbox" name="emailsts_yn" value="Y" checked />
 									쇼핑몰에서 발송하는 e-mail을 수신합니다.
+										</c:when>
+										<c:otherwise>
+											<input type="checkbox" name="emailsts_yn" value="Y" />
+									쇼핑몰에서 발송하는 e-mail을 수신합니다.
+										</c:otherwise>
+									</c:choose>
+									<input type="button" value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('email')" />
 								</div>
 							</div>
 
@@ -345,46 +485,52 @@
 								<div class="col-md-12">
 									<label for="c_address" class="text-black">주소</label>
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-12">
 									<input type="text" class="form-controlAddress" id="zipcode"
-										name="zipcode" placeholder="우편번호"> <a
+										name="zipcode" placeholder="우편번호"
+										value="${memberInfo.zipcode }"> <a
 										href="javascript:execDaumPostcode()"> <input type="button"
 										class="btn btn-smCustom btn-secondary" value="주소 찾기"></a>
+									<input type="button" value="수정하기"
+										class="btn btn-smCustom btn-secondary no-pad right"
+										onClick="fn_modify_member_info('address')" />
 								</div>
 							</div>
 
 							<div class="form-group">
 								<input type="text" class="form-control" id="roadAddress"
-									name="roadAddress" placeholder="도로명 주소">
+									value="${memberInfo.roadAddress }" name="roadAddress"
+									placeholder="도로명 주소">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" id="jibunAddress"
-									name="jibunAddress" placeholder="지번 주소">
+									value="${memberInfo.jibunAddress }" name="jibunAddress"
+									placeholder="지번 주소">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="namujiAddress"
-									placeholder="상세 주소">
+									value="${memberInfo.namujiAddress }" placeholder="상세 주소">
 							</div>
 
 
 
 							<div class="form-group row">
-								<div class="col-md-6">
-									<input type="submit" class="btn btn-primary btn-lg btn-block"
-										value="회원가입">
 
-								</div>
-
-								<div class="col-md-6">
-									<a href="javascript:history.back();"><input type="button" class="btn btn-outline-danger btn-lg btn-block"
-										value="뒤로가기"></a>
+								<div class="col-md-6 center">
+									<input type="hidden" name="command" value="modify_my_info" />
+									<a href="javascript:history.back();"><input type="button"
+										name="btn_cancel_member"
+										class="btn btn-outline-danger btn-lg btn-block" value="수정 취소"></a>
 								</div>
 							</div>
 						</div>
+						<input type="hidden" name="h_tel1" value="${memberInfo.tel1}" />
+						<input type="hidden" name="h_hp1" value="${memberInfo.hp1}" />
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

@@ -435,8 +435,8 @@ function fn_modify_member_info(attribute){
 					   <input type="text" id="zipcode" name="zipcode" size=5 value="${memberInfo.zipcode }" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
 					  <br>
 					  <p> 
-					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${memberInfo.roadAddress }"><br><br>
-					  도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${memberInfo.jibunAddress }"><br><br>
+					   도로명 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${memberInfo.roadAddress }"><br><br>
+					  지번 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${memberInfo.jibunAddress }"><br><br>
 					  나머지 주소: <input type="text"  name="namujiAddress" size="50" value="${memberInfo.namujiAddress }" />
 					   </p>
 					</td>
