@@ -181,7 +181,7 @@
 		}
 
 		objForm.method = "post";
-		objForm.action = "${contextPath}/order/orderAllCartGoodsTest.do";
+		objForm.action = "${contextPath}/order/orderAllCartGoods.do";
 		objForm.submit();
 	}
 </script>

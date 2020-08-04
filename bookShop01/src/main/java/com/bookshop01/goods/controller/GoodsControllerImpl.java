@@ -75,8 +75,13 @@ public class GoodsControllerImpl extends BaseController   implements GoodsContro
 	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		HttpSession session=request.getSession();	//장바구니 카운터 때문에MainController에서 정보 담김
+		
+		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
+		
+		
 		mav.addObject("goodsList", goodsList);
 		return mav;
 		

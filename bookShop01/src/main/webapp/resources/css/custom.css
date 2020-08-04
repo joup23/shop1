@@ -214,7 +214,13 @@
 	z-index: 1;
 	top: 3px;
 }
-
+.select-holderWidth {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 1.5em;
+	background: #f9f9f9;
+}
 .select-holder {
 	display: inline-block;
 	position: relative;
@@ -234,6 +240,13 @@
 	display: inline-block;
 	position: relative;
 	width: 90px;
+	height: 1.5em;
+	background: #f9f9f9;
+}
+.select-holder4 {
+	display: inline-block;
+	position: relative;
+	width: 160px;
 	height: 1.5em;
 	background: #f9f9f9;
 }
@@ -515,6 +528,9 @@
 .margin-bottom {
 	margin-bottom: 1rem;
 }
+.margin-right{
+	margin-right: 1rem;
+}
 .bottom_no_margin {
 	margin-bottom: 0 !important;
 }
@@ -524,7 +540,9 @@
 .text-center {
 	text-align: center;
 }
-
+.text-left {
+	text-align: left;
+}
 .tab_container {
 	padding-top: 10px;
 }

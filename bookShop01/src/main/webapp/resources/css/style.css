@@ -634,14 +634,14 @@ a {
   .site-blocks-table .product-thumbnail {
     width: 200px; }
   .site-blocks-table thead th {
-    padding: 30px;
+    padding: 15px;
     text-align: center;
     border-width: 1px !important;
     vertical-align: middle;
     color: #212529;
-    font-size: 18px; }
+    font-size: 13px; }
   .site-blocks-table td {
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     vertical-align: middle;
     color: #212529; }

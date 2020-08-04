@@ -106,7 +106,7 @@
 					</ul>
 					
 				</c:when>
-				<c:when test="${side_menu=='my_page' }">
+				<c:otherwise>
 					<ul class="list-unstyled mb-0">
 						<li class="mb-1"><a href="${contextPath}/mypage/listMyOrderHistory.do" class="d-flex"><span>주문
 									내역/배송 조회</span></a></li>
@@ -115,7 +115,7 @@
 						<li class="mb-1"><a href="#" class="d-flex"><span>회원
 									탈퇴</span> </a></li>
 					</ul>
-				</c:when>
+				</c:otherwise>
 			</c:choose>
 		</div>
 

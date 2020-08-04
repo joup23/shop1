@@ -66,7 +66,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-7 site-section-heading text-center pt-4">
-				<h2>베스트 셀러test입니다.</h2>
+				<h2>베스트 셀러</h2>
 			</div>
 		</div>
 		<div class="row">

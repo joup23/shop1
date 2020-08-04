@@ -3,23 +3,23 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	  <definition name="/member/loginForm" extends="baseLayout">
+	  <!-- <definition name="/member/loginForm" extends="baseLayout">
          <put-attribute name="title" value="로그인 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
-      </definition>  
+      </definition> -->  
       
-      <definition name="/member/loginForm2" extends="baseLayout2">
+      <definition name="/member/loginForm" extends="baseLayout2">
          <put-attribute name="title" value="로그인 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/member/loginForm2.jsp" />
       </definition>  
       
-      <definition name="/member/memberForm" extends="baseLayout">
+      <!-- <definition name="/member/memberForm" extends="baseLayout">
          <put-attribute name="title" value="회원 가입 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
-      </definition>
+      </definition> -->
   		
   		<!-- test -->
-  		<definition name="/member/memberForm2" extends="baseLayout2">
+  		<definition name="/member/memberForm" extends="baseLayout2">
          <put-attribute name="title" value="회원 가입 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/member/memberForm2.jsp" />
       </definition>

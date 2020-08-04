@@ -42,7 +42,7 @@ pageContext.setAttribute("br", "<br/>"); //br 태그
 								<div class="block-4 text-center border">
 									<figure class="block-4-image">
 										<a
-											href="${contextPath}/goods/goodsDetailTest.do?goods_id=${item.goods_id}">
+											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
 											<img
 											src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"
 											alt="Image placeholder" class="img-fluid">

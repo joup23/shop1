@@ -21,9 +21,13 @@
        <put-attribute name="body" value="/WEB-INF/views/admin/goods/addNewGoodsForm2.jsp" />
     </definition>
     
-    <definition name="/admin/goods/modifyGoodsForm" extends="baseLayout">
+    <!-- <definition name="/admin/goods/modifyGoodsForm" extends="baseLayout">
        <put-attribute name="title" value="상품 수정 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/admin/goods/modifyGoodsForm.jsp" />
+    </definition> -->
+    <definition name="/admin/goods/modifyGoodsForm" extends="baseLayout4">
+       <put-attribute name="title" value="상품 수정 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/goods/modifyGoodsForm2.jsp" />
     </definition>
 </tiles-definitions>
 

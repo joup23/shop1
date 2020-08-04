@@ -15,7 +15,7 @@
 						<div id="search"
 							class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
 							<form name="frmSearch"
-								action="${contextPath}/goods/searchGoodsTest.do"
+								action="${contextPath}/goods/searchGoods.do"
 								class="site-block-top-search">
 								<span class="icon icon-search2"></span> <input type="text"
 									name="searchWord" onKeyUp="keywordSearch()"
@@ -47,7 +47,7 @@
 												class="site-cart"> <span class="icon icon-shopping_cart"
 													title="장바구니"></span> <span class="count">${cartCount}</span>
 											</a></li>
-											<li><a href="#" title="주문배송"><span
+											<li><a href="${contextPath}/admin/order/adminOrderMain.do" title="주문배송"><span
 													class="icon icon-local_shipping"></span></a></li>
 										</c:when>
 										<c:otherwise>

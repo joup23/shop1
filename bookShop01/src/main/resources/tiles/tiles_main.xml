@@ -12,10 +12,10 @@
 		<put-attribute name="quickMenu" value="/WEB-INF/views/common/quickMenu.jsp" />
 	</definition>
 
-	<definition name="/main/main" extends="baseLayout">
+	<!-- <definition name="/main/main" extends="baseLayout">
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
-	</definition>
+	</definition> -->
 	
 	<definition name="baseLayout2" template="/WEB-INF/views/common/layout2.jsp">
 		<put-attribute name="title" value="레이아웃 페이지" />
@@ -42,7 +42,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer2.jsp" />
 	</definition>
 	
-	<definition name="/test/main" extends="baseLayout2">
+	<definition name="/main/main" extends="baseLayout2">
 		<put-attribute name="title" value="쇼핑몰 메인페이지" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main2.jsp" />
 	</definition>

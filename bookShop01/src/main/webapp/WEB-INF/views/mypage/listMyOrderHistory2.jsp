@@ -162,7 +162,7 @@
 					</form>
 					<table class="table table-bordered">
 						<thead>
-							<tr>
+							<tr class="bg-light">
 								<th class="product-name">주문 번호</th>
 								<th class="product-name">주문 일자</th>
 								<th class="product-name">주문 내역</th>

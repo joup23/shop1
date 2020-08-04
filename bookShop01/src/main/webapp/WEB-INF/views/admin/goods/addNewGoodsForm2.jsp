@@ -15,7 +15,7 @@
 			$("#d_file")
 					.append(
 							"<br>"
-									+ "<input  type='file' name='main_image' id='f_main_image' />");
+									+ "<input  type='file' name='main_image' class='btn btn-smCustom btn-secondary no-pad margin-bottom' id='f_main_image' />");
 		} else {
 			$("#d_file")
 					.append(

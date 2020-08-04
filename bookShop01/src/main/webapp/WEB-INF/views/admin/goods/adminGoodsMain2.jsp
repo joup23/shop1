@@ -211,7 +211,7 @@
 
 					<table class="table table-bordered">
 						<thead>
-							<tr>
+							<tr class="bg-light">
 								<th class="product-name">상품 번호</th>
 								<th class="product-name">상품 이름</th>
 								<th class="product-name">저자</th>
@@ -225,25 +225,25 @@
 							<c:choose>
 								<c:when test="${ empty newGoodsList  }">
 									<tr>
-										<td colspan=7 class="fixed"><strong>조회한 상품이
-												없습니다.</strong></td>
+										<td colspan=7 class="fixed"><p>조회한 상품이
+												없습니다.</p></td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="item" items="${newGoodsList }">
 										<tr>
-											<td><strong>${item.goods_id }</strong></td>
+											<td><p>${item.goods_id }</p></td>
 											<td><a
-												href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}"><strong>${item.goods_title }</strong>
+												href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}"><p>${item.goods_title }</p>
 											</a></td>
-											<td><strong>${item.goods_writer }</strong></td>
-											<td><strong>${item.goods_publisher } </strong></td>
-											<td><strong> ${item.goods_sales_price } </strong></td>
-											<td><strong> ${item.goods_credate } </strong></td>
+											<td><p>${item.goods_writer }</p></td>
+											<td><p>${item.goods_publisher } </p></td>
+											<td><p> ${item.goods_sales_price } </p></td>
+											<td><p> ${item.goods_credate } </p></td>
 											<td><c:set var="pub_date"
 													value="${item.goods_published_date}" /> <c:set var="arr"
-													value="${fn:split(pub_date,' ')}" /> <strong> <c:out
-														value="${arr[0]}" /></strong></td>
+													value="${fn:split(pub_date,' ')}" /> <p> <c:out
+														value="${arr[0]}" /></p></td>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>

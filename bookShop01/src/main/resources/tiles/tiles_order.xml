@@ -7,10 +7,10 @@
        <put-attribute name="title" value="상품 주문 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm.jsp" />
     </definition> -->
-    <definition name="/order/orderAllCartGoods" extends="baseLayout">
+    <!-- <definition name="/order/orderAllCartGoods" extends="baseLayout">
        <put-attribute name="title" value="상품 주문 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm.jsp" />
-    </definition> 
+    </definition>  -->
      <!-- <definition name="/order/payToOrderGoods" extends="baseLayout">
        <put-attribute name="title" value="상품 주문 결과 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderResult.jsp" />
@@ -20,7 +20,7 @@
        <put-attribute name="title" value="상품 주문 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm2.jsp" />
     </definition>
-    <definition name="/order/orderAllCartGoodsTest" extends="baseLayout2">
+    <definition name="/order/orderAllCartGoods" extends="baseLayout2">
        <put-attribute name="title" value="상품 주문 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/order/orderGoodsForm2.jsp" />
     </definition> 
