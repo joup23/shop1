@@ -535,16 +535,7 @@
 					</table>
 
 				</div>
-				<div class="form-group row">
-
-					<div class="col-md-6 center">
-						<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
-							<input type="hidden" name="command" value="modify_my_info" /> <input
-								type="submit" name="btn_cancel_member"
-								class="btn btn-primary btn-lg btn-block" value="상품 등록">
-						</form>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
